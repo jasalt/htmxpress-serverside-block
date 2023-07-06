@@ -34,7 +34,7 @@ export default function Edit() {
 		<div {...useBlockProps()} data-test="test">
 			<ServerSideRender
 				block="create-block/htmx-server-block"
-				EmptyResponsePlaceholder={ 'nothing' }
+//				EmptyResponsePlaceholder={ 'nothing' }
 			/>
 		</div>
 	);

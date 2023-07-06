@@ -30,5 +30,8 @@ registerBlockType(metadata.name, {
 	 * @see ./edit.js
 	 */
 	edit: Edit,
-	save: null
+	save: ({ attributes }) => {
+		return <div> { attributes.content } </div>;
+	}
+
 });
