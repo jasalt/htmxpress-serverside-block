@@ -1,3 +1,32 @@
+# "Standalone Test" Fork Info
+
+Testing how to ship a plugin including htmxpress.
+
+## Building
+
+```
+git clone https://github.com/jasalt/htmxpress-serverside-block.git
+# or git clone git@github.com:jasalt/htmxpress-serverside-block.git
+
+cd htmxpress-serverside-block
+git checkout standalone-test
+git submodule init && git submodule update
+npm install && npm run build
+```
+
+## Packaging
+
+```
+# Remove nested plugin header in htmxpress to fix a (non-breaking) warning "The plugin does not have a valid header." during activation.
+# (GPT-3): with awk, remove first section in file between `/*` and `*/` from file htmxpress/htmxpress.php
+
+awk '/\/\*/,/\*\//{next} 1' htmxpress/htmxpress.php > temp_file && mv temp_file htmxpress/htmxpress.php
+
+zip -r ../htmxpress-serverside-block-standalone-test.zip ./* -x "*node_modules/*"
+```
+
+Creates a single plugin zip that can be installed on WordPress. Note that the zip has `.git` and other development related stuff, not meant as a final solution.
+
 ### Htmx Server Block
 Contributors:      The WordPress Contributors<br>
 Tags:              block<br>
@@ -38,4 +67,3 @@ The templates/random_posts.php template contains a WP_Query to load 3 random pos
 ## Demo:
 
 https://github.com/svandragt/htmxpress-serverside-block/assets/594871/99bdb328-2102-469c-944f-d53baff46594
-
