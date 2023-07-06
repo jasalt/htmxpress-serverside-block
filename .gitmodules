@@ -1,0 +1,3 @@
+[submodule "htmxpress"]
+	path = htmxpress
+	url = https://github.com/svandragt/htmxpress.git
