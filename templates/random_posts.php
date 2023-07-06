@@ -7,7 +7,7 @@ $post_args = [
 ];
 $query = new WP_Query($post_args);
 
-if ($query->have_posts()) :
+if ($query->have_posts()) {
 ?>
 
 	<div id='random-posts'>
@@ -26,5 +26,6 @@ if ($query->have_posts()) :
 	</div>
 
 <?php
+
 	wp_reset_postdata();
-endif;
+}
