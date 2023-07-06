@@ -5,24 +5,26 @@ $post_args = [
 	'post_status' => 'publish',
 	'post_type' => 'post',
 ];
-$query = new WP_Query( $post_args );
+$query = new WP_Query($post_args);
 
-if ( $query->have_posts() ) :
-	echo "<div  id='random-posts'>";
-	while ( $query->have_posts() ) : $query->the_post();
+if ($query->have_posts()) :
+?>
 
-		echo "<div style='border:2px groove black; margin-bottom:5px;'><h3>";
-		the_title();
-		echo "</h3>";
-		the_excerpt();
-		echo "</div>";
+	<div id='random-posts'>
+		<?php while ($query->have_posts()) : $query->the_post(); ?>
 
-	endwhile;
+			<div style='border:2px groove black; margin-bottom:5px;'>
+				<h3> <?php the_title(); ?> </h3>
+				<p> <?php the_excerpt(); ?>
+			</div>
 
-	echo '<button hx-post="/htmx/random_posts" hx-target="#random-posts">
-                More
-            </button>';
-	echo "</div>";
+		<?php endwhile; ?>
 
+		<button hx-post="/htmx/random_posts" hx-target="#random-posts">
+			More
+		</button>
+	</div>
+
+<?php
 	wp_reset_postdata();
 endif;
